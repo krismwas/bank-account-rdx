@@ -2,7 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import "./store.js";
+import store from "./store.js";
+
+store.dispatch({
+  type: "customer/createCustomer",
+  payload: { fullName: "margaret " },
+});
+console.log(store.getState());
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
