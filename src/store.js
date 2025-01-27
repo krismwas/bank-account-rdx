@@ -16,7 +16,7 @@ function reducer(state = initialState, action) {
         loanPurpose: action.payload.purpose,
         balance: state.balance + action.payload.amount,
       };
-    case "account/payloan":
+    case "account/payLoan":
       return {
         ...state,
         loan: 0,
@@ -29,3 +29,29 @@ function reducer(state = initialState, action) {
 }
 
 const store = createStore(reducer);
+
+function deposit(amount) {
+  return { type: "account/deposit", payload: amount };
+}
+
+store.dispatch(deposit(1000));
+console.log(store.getState());
+
+function withdraw(amount) {
+  return { type: "account/withdraw", payload: amount };
+}
+store.dispatch(withdraw(300));
+console.log(store.getState());
+
+function requestLoan(amount, purpose) {
+  return { type: "account/requestLoan", payload: { amount, purpose } };
+}
+
+store.dispatch(requestLoan(2000, "buy a car"));
+console.log(store.getState());
+function payLoan() {
+  return { type: "account/payLoan" };
+}
+
+store.dispatch(payLoan());
+console.log(store.getState());
